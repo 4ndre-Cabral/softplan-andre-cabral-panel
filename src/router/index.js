@@ -5,6 +5,7 @@ import { abilitiesPlugin, Can } from '@casl/vue'
 import { AbilityBuilder, Ability } from '@casl/ability'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueClipboard from 'vue-clipboard2'
+import { LocalStorage } from 'quasar'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,38 @@ export default function (/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE
   })
   Vue.router = Router
+  Vue.router.beforeEach((to, from, next) => {
+    const user = LocalStorage.getItem('user')
+    if (to.name && user && user.roles) {
+      // if (user.roles[0] === 'ROLE_ADMIN') next('/users')
+      // if (user.roles[0] === 'ROLE_TRIADOR') next('/procedures')
+      // if (user.roles[0] === 'ROLE_FINALIZADOR') next('/users')
+      switch (to.name) {
+        case 'Usuários':
+        case 'Dados do usuário':
+          if (user.roles[0] === 'ROLE_ADMIN') {
+            next()
+          } else {
+            next('/procedures')
+          }
+          break
+        case 'Processos':
+          if (user.roles[0] === 'ROLE_TRIADOR') {
+            next()
+          } else {
+            next('/opinions')
+          }
+          break
+        case 'Pareceres':
+          next()
+          break
+        default :
+          next()
+      }
+    } else {
+      next()
+    }
+  })
 
   return Router
 }

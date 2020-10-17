@@ -80,9 +80,9 @@ export default {
       leftDrawerOpen: this.$q.platform.is.desktop,
       title: '',
       menuItens: [
-        { disable: this.$ability.can('read', 'survey'), id: 1, canRead: 'survey', ref: '/formularios', label: 'Formulários', icon: 'speaker_notes' },
-        { disable: false, id: 2, ref: `/resultados`, label: 'Resultados', icon: 'assessment' },
-        { disable: this.$ability.can('read', 'user'), id: 3, canRead: 'user', ref: '/users', label: 'Lista de usuários', icon: 'supervised_user_circle' }
+        { disable: !this.$ability.can('read', 'ROLE_ADMIN'), id: 1, canRead: 'ROLE_ADMIN', ref: '/users', label: 'Usuários', icon: 'supervised_user_circle' },
+        { disable: !this.$ability.can('read', 'ROLE_TRIADOR'), id: 2, canRead: 'ROLE_TRIADOR', ref: `/procedures`, label: 'Processos', icon: 'assessment' },
+        { disable: !this.$ability.can('read', 'ROLE_FINALIZADOR'), id: 3, canRead: 'ROLE_FINALIZADOR', ref: '/opinions', label: 'Pareceres', icon: 'speaker_notes' }
       ]
     }
   },
@@ -107,13 +107,12 @@ export default {
     },
     updateAbility () {
       const { can, rules } = new AbilityBuilder()
-      const userRole = this.user.userRole[0]
-      if (userRole) {
+      if (this.user.roles && this.user.roles.length > 0) {
         this.$ability.update([])
-        can('read', userRole.read)
-        can('create', userRole.create)
-        can('update', userRole.update)
-        can('delete', userRole.delete)
+        can('read', this.user.roles)
+        can('create', this.user.roles)
+        can('update', this.user.roles)
+        can('delete', this.user.roles)
         this.$ability.update(rules)
         this.menuItens.forEach(item => {
           if (item.canRead) item.disable = !this.$ability.can('read', item.canRead)

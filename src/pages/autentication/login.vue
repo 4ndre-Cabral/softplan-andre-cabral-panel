@@ -75,6 +75,7 @@ export default {
         if (response) {
           // Authentication - Grava token no local storage da aplicação
           const userData = response
+          LocalStorage.set(self.$c.USER, userData)
           self.$auth.token(null, response.token)
           await self.$auth.refresh({
             success () {
@@ -87,7 +88,6 @@ export default {
             }
           })
           self.$q.loading.hide()
-          LocalStorage.set(self.$c.USER, userData)
         }
       }).catch((error) => {
         debugger

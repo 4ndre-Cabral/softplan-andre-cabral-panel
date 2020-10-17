@@ -98,8 +98,8 @@
   </q-form>
 </template>
 <script>
-import userService from '../../service/userService'
-import helper from '../../utils/util'
+import userService from '@/services/userService'
+import helper from '@/utils/util'
 
 export default {
   name: 'userData',

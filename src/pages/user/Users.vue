@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import userService from '../../service/userService'
+import userService from '@/services/userService'
 
 export default {
   name: 'userList',
