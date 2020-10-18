@@ -52,6 +52,8 @@
 <script>
 import { LocalStorage } from 'quasar'
 import userService from '@/services/userService'
+import loading from '@/boot/loading'
+import notify from '@/boot/notify'
 
 export default {
   name: 'Login',
@@ -70,7 +72,7 @@ export default {
   methods: {
     login () {
       const self = this
-      this.$q.loading.show()
+      loading.show()
       userService.login(this.credentials, this.$auth).then(async response => {
         if (response) {
           // Authentication - Grava token no local storage da aplicação
@@ -87,30 +89,20 @@ export default {
               console.log('error')
             }
           })
-          self.$q.loading.hide()
+          loading.hide()
         }
       }).catch((error) => {
-        debugger
         console.log(error)
-        this.$q.notify({
-          message: 'Usuário ou senha incorretos',
-          color: 'negative'
+        notify.create({
+          message: error.response.data.message
         })
-        this.$q.loading.hide()
+        loading.hide()
       })
     },
     isValiduserName (val) {
       const userNamePattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
       return userNamePattern.test(val) || 'userName inválido'
     }
-  },
-  mounted () {
-    // let user = LocalStorage.getItem(this.$c.USER)
-    // if (user) {
-    //   this.credentials = {
-    //     login: user.userName
-    //   }
-    // }
   }
 }
 

@@ -8,7 +8,7 @@ const routes = [
     redirect: '/users',
     children: [
       { path: '/users', name: 'Usuários', meta: { auth: true }, component: () => import('pages/user/Users.vue') },
-      { path: '/users/:id?', name: 'Dados do usuário', meta: { auth: true }, component: () => import('pages/user/UserDetail.vue') },
+      { path: '/user/:id?', name: 'Dados do usuário', meta: { auth: true }, component: () => import('pages/user/UserDetail.vue') },
       { path: '/procedures', name: 'Processos', meta: { auth: true }, component: () => import('pages/procedure/Procedures.vue') },
       { path: '/opinions', name: 'Pareceres', meta: { auth: true }, component: () => import('pages/opinion/Opinions.vue') }
     ]

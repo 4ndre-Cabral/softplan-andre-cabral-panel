@@ -31,28 +31,29 @@ export default function (/* { store, ssrContext } */) {
   Vue.router = Router
   Vue.router.beforeEach((to, from, next) => {
     const user = LocalStorage.getItem('user')
-    if (to.name && user && user.roles) {
-      // if (user.roles[0] === 'ROLE_ADMIN') next('/users')
-      // if (user.roles[0] === 'ROLE_TRIADOR') next('/procedures')
-      // if (user.roles[0] === 'ROLE_FINALIZADOR') next('/users')
+    if (to.name && user && user.roles && user.roles.length > 0) {
       switch (to.name) {
         case 'Usuários':
         case 'Dados do usuário':
-          if (user.roles[0] === 'ROLE_ADMIN') {
+          if (user.roles.filter(r => r === 'ROLE_ADMIN').length > 0) {
             next()
           } else {
             next('/procedures')
           }
           break
         case 'Processos':
-          if (user.roles[0] === 'ROLE_TRIADOR') {
+          if (user.roles.filter(r => r === 'ROLE_TRIADOR').length > 0) {
             next()
           } else {
             next('/opinions')
           }
           break
         case 'Pareceres':
-          next()
+          if (user.roles.filter(r => r === 'ROLE_FINALIZADOR').length > 0) {
+            next()
+          } else {
+            next('/users')
+          }
           break
         default :
           next()

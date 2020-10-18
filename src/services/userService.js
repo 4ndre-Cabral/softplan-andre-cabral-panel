@@ -11,11 +11,11 @@ export default {
     return axios.get(url)
   },
   save (user) {
-    const url = `${USER_URL}/${user._id ? user._id : 'signup'}`
-    return user._id ? axios.patch(url, user) : axios.post(url, user)
+    const url = `${USER_URL}/${user.id ? user.id : 'signup'}`
+    return user.id ? axios.put(url, user) : axios.post(url, user)
   },
   update (user) {
-    const url = `${USER_URL}/${user._id}`
+    const url = `${USER_URL}/${user.id}`
     return axios.patch(url, user)
   },
   delete (ids) {
@@ -25,6 +25,10 @@ export default {
   add (user) {
     const url = `${USER_URL}/signup`
     return axios.post(url, user)
+  },
+  deleteUser (id) {
+    const url = `${USER_URL}/${id}`
+    return axios.delete(url)
   },
   login (credentials, auth) {
     window.Auth = auth

@@ -6,7 +6,7 @@ export default ({ Vue }) => {
     authRedirect: '/login',
     loginData: { url: `auth/signin`, method: 'POST', redirect: '/', fetchUser: false },
     logoutData: { url: `auth/logout`, method: 'POST', redirect: '/login', makeRequest: false },
-    refreshData: { url: `auth/refresh`, method: 'GET', enabled: false, interval: 30 },
+    refreshData: { url: `auth/refresh`, method: 'GET', enabled: true, interval: 30 },
     fetchData: { enabled: false }
   })
 }

@@ -10,7 +10,9 @@ module.exports = function (ctx) {
       'i18n',
       'axios',
       'auth',
-      'consts'
+      'consts',
+      'loading',
+      'notify'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
