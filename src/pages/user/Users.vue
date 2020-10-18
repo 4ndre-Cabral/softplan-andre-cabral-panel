@@ -24,10 +24,11 @@
           </q-td>
           <q-td key="username" :props="props">{{ props.row.username }}</q-td>
           <q-td key="email" :props="props" >{{ props.row.email }}</q-td>
-          <q-td key="group" :props="props" >{{ getUserRole(props.row.roles[0]) }}</q-td>
+          <q-td key="group" :props="props" >{{ getUserRole(props.row.roles) }}</q-td>
         </q-tr>
       </template>
     </q-table>
+    <div class="text-caption">*Usuários que já assinaram um parecer não podem ser deletados</div>
     <!-- Botão Adicionar Usuário -->
     <q-page-sticky position="bottom-right" :offset="[30, 30]">
       <div class="q-gutter-md">
@@ -84,8 +85,12 @@ export default {
         loading.hide()
       })
     },
-    getUserRole (role) {
-      return role.name === 'ROLE_ADMIN' ? this.$c.ROLE_ADMIN : role.name === 'ROLE_TRIADOR' ? this.$c.ROLE_TRIADOR : this.$c.ROLE_FINALIZADOR
+    getUserRole (roles) {
+      let stringRoles = []
+      roles.forEach(role => {
+        stringRoles.push(role.name === 'ROLE_ADMIN' ? this.$c.ROLE_ADMIN : role.name === 'ROLE_TRIADOR' ? this.$c.ROLE_TRIADOR : this.$c.ROLE_FINALIZADOR)
+      })
+      return stringRoles.join(',')
     },
     filterFunction (rows, terms, cols, getCellValue) {
       return rows.filter(r => {

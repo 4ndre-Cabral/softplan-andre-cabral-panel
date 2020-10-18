@@ -62,8 +62,8 @@
       <q-item>
         <q-item-section>
           <q-select
-            filled dense use-chips
-            v-model="user.roles"
+            filled dense use-chips multiple
+            v-model="user.role"
             :options="userRoleOptions"
             label="Tipo de usuário"
             emit-value
@@ -110,7 +110,9 @@ export default {
           this.user = response.data
           this.user.password = null
           this.email = this.user.email.split('@')[0]
-          this.user.roles = this.user.roles[0].name
+          this.user.role = this.user.roles.map(role => {
+            return role.name
+          })
         }
         loading.hide()
       })
@@ -119,10 +121,10 @@ export default {
   methods: {
     userInsertOrUpdate () {
       if (!this.user.password) delete this.user.password
-      this.user.role = []
-      this.user.role.push(this.user.roles)
+      // this.user.role = []
+      // this.user.role.push(this.user.roles)
       this.user.email = this.email + this.suffix
-      delete this.user.roles
+      // delete this.user.roles
       delete this.user.opinions
       loading.show('Salvando...')
       userService.save(this.user).then(response => {

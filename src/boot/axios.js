@@ -26,7 +26,8 @@ axios.interceptors.response.use(function (response) {
   return response
 }, function (error) {
   // Do something with response error
-  if (error.response.data.message === 'Token inválido' && error.response.status === 500) {
+  console.log(error.response.data)
+  if (error.response.data.message.indexOf('JWT signature does not match') !== -1 && error.response.status === 500) {
     LocalStorage.remove('default_auth_token')
     if (Vue.router.currentRoute.path !== '/login') {
       Vue.router.push('/login')
