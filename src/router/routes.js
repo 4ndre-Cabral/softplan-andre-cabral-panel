@@ -10,6 +10,7 @@ const routes = [
       { path: '/users', name: 'Usuários', meta: { auth: true }, component: () => import('pages/user/Users.vue') },
       { path: '/user/:id?', name: 'Dados do usuário', meta: { auth: true }, component: () => import('pages/user/UserDetail.vue') },
       { path: '/procedures', name: 'Processos', meta: { auth: true }, component: () => import('pages/procedure/Procedures.vue') },
+      { path: '/procedure/:id?', name: 'Dados do processo', meta: { auth: true }, component: () => import('pages/procedure/ProcedureDetail.vue') },
       { path: '/opinions', name: 'Pareceres', meta: { auth: true }, component: () => import('pages/opinion/Opinions.vue') }
     ]
   },

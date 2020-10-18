@@ -1,7 +1,7 @@
 <template>
   <q-form @submit="userInsertOrUpdate">
     <q-list bordered padding>
-      <q-item-label header>Informações Pessoais</q-item-label>
+      <q-item-label header>Dados do usuário</q-item-label>
       <q-item>
         <q-item-section>
           <q-input
@@ -24,7 +24,7 @@
               v-model="email" :suffix="suffix"
               label="e-mail/login"
               lazy-rules
-              :rules="[ val => !!val || 'Preencha o e-mail corretamente']"
+              :rules="[ val => !!val && emailValidation(val) || 'Preencha o e-mail corretamente']"
             />
             <q-input v-if="$route.params.id"
               class="col-6 q-pr-sm"
@@ -140,8 +140,7 @@ export default {
       })
     },
     emailValidation (val) {
-      if (!val || val === '') return true
-      return helper.isEmail(val)
+      return helper.isEmail(val + this.suffix)
     }
   }
 }

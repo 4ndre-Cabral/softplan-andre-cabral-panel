@@ -42,6 +42,7 @@ export default function (/* { store, ssrContext } */) {
           }
           break
         case 'Processos':
+        case 'Dados do processo':
           if (user.roles.filter(r => r === 'ROLE_TRIADOR').length > 0) {
             next()
           } else {

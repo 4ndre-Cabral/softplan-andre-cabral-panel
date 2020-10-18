@@ -32,6 +32,7 @@
     <q-page-sticky position="bottom-right" :offset="[30, 30]">
       <div class="q-gutter-md">
         <q-btn fab icon="add" color="primary" @click="add" />
+        <q-tooltip>Adicionar usuário</q-tooltip>
       </div>
     </q-page-sticky>
 
@@ -61,9 +62,6 @@ export default {
     this.getAll()
   },
   methods: {
-    edituser (user) {
-      this.$router.push({ path: `/user/${user.id}` })
-    },
     getAll () {
       this.loadUsers = true
       userService.getAll().then(response => {
