@@ -52,11 +52,15 @@ sobre o possível erro.
 ### Níveis de Acesso
 Este app conta com 3 níveis de acesso as suas funcionalidades:
 > Administrador
+
 > Triador
+
 > Finalizador
+
 Cada usuário deve estar vinculado ao menos em um desses perfis. O sistema permite q um usuário seja vinculado a mais
 de um perfil, dando a ele maior acesso a aplicação.
-Ex.: Se um usuário tiver todos os perfis, ele terá acesso as todas as funcionalidades.
+
+> Ex.: Se um usuário tiver todos os perfis, ele terá acesso as todas as funcionalidades.
 
 ### Menu
 O projeto possui um menu principal que só pode ser acessado de acordo com os privilégios do usuário.
