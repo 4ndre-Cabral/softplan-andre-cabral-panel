@@ -40,12 +40,12 @@ quasar build
 
 ### UX
 Este projeto possui uma aparência moderna, totalmente responsiva e com várias dicas ao longo das telas
-para orientar o usuário. Essas dicas estão em forma de ícones, textos em destaque, tooltip e mensagens
-de erro caso uma restrição seja acionada.
+para orientar o usuário. Essas dicas estão em forma de ícones, textos em destaque, tooltips e mensagens
+de erro caso alguma restrição seja acionada.
 
 ### Validação
 Todos os campos com restrição possuem validação. Caso a restrição seja quebrada o sistema alerta o usuário
-sobre o possível erro.
+sobre o possível erro. Vale destacar que a api também possui a validação dos campos.
 
 ### Níveis de Acesso
 Este app conta com 3 níveis de acesso as suas funcionalidades:
@@ -55,7 +55,7 @@ Este app conta com 3 níveis de acesso as suas funcionalidades:
 
 > Finalizador
 
-Cada usuário deve estar vinculado ao menos em um desses perfis. O sistema permite q um usuário seja vinculado a mais
+Cada usuário deve estar vinculado em pelo menos um desses perfis. O sistema permite que um usuário seja vinculado a mais
 de um perfil, dando a ele maior acesso a aplicação.
 
 > Ex.: Se um usuário tiver todos os perfis, ele terá acesso as todas as funcionalidades.

@@ -93,8 +93,9 @@ export default {
         }
       }).catch((error) => {
         console.log(error)
+        const msg = error.response.data.message.indexOf('Acesso negado') !== -1 ? 'Usuário ou senha inválidos' : error.response.data.message
         notify.create({
-          message: error.response.data.message
+          message: msg
         })
         loading.hide()
       })
