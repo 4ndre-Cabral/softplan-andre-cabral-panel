@@ -12,10 +12,10 @@ npm install
 ```
 
 ### Instalar Quasar
-Veja (https://quasar.dev/quasar-cli).
+Veja [Quasar CLI](https://quasar.dev/quasar-cli).
 
 ### Apontar app para a URL da api
-– Antes de rodar o app é necessário aponta-lo para a URL da api.
+Antes de rodar o app é necessário aponta-lo para a URL da api.
 Para isso vá até o arquivo
 ```bash
 config/dev.env.js
@@ -24,7 +24,7 @@ que fica na raiz do projeto e altere a variável API
 ```json
 API: '"http://localhost:8080/api"'
 ```
-Obs.: Neste exemplo a api está rodando na porta 8080 no endereço localhost
+> Obs.: Neste exemplo a api está rodando na porta 8080 no endereço localhost
 
 ### Iniciar app no modo de desenvolvimento (hot-code reloading, error reporting, etc.)
 ```bash
@@ -84,7 +84,7 @@ As rotas da aplicação são liberadas por nível de acesso. Caso um usuário te
 ele será redirecionado para sua rota de destino principal
 
 ### Tela de erro
-Caso o usuário tente acessa um destino (rota) não existente ele será enviado para uma tela de Erro 404
+Caso o usuário tente acessar um destino (rota) não existente ele será enviado para uma tela de Erro 404
 
 ### Referência
 https://quasar.dev
