@@ -17,10 +17,8 @@ Veja [Quasar CLI](https://quasar.dev/quasar-cli).
 ### Apontar app para a URL da api
 Antes de rodar o app é necessário aponta-lo para a URL da api.
 Para isso vá até o arquivo
-```bash
-config/dev.env.js
-```
-que fica na raiz do projeto e altere a variável API
+`src/config/dev.env.js`
+e altere a variável API
 ```json
 API: '"http://localhost:8080/api"'
 ```
