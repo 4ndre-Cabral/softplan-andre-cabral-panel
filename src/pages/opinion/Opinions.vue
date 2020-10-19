@@ -12,6 +12,9 @@
             <q-item-label lines="1">
               <span class="text-weight-medium text-h6">{{index + 1}}</span>
               <span class="text-grey-8 text-subtitle1"> - {{procedure.description}}</span>
+              <q-item-label
+                v-if="procedure.description.length > 20"
+                style="white-space: normal;" caption lines="20">{{procedure.description}}</q-item-label>
             </q-item-label>
           </q-item-section>
 
@@ -44,10 +47,10 @@
           <q-input
             v-model="description" autofocus
             class="col-12 q-pr-sm"
-            filled dense
+            filled dense type="textarea"
             label="Descrição do parecer"
             lazy-rules
-            :rules="[ val => !!val || 'Preencha a descrição']"/>
+            :rules="[val => noEmptyAndLengthRule(val, 255)]"/>
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
@@ -106,6 +109,9 @@ export default {
       this.option.description = null
       this.option.procedure = { id: procedure.id }
       this.optionCard = true
+    },
+    noEmptyAndLengthRule (val, length) {
+      return (val != null && val.length > 0 && val.length <= length) || `Use entre 1 e ${length} caracteres.`
     }
   }
 }

@@ -6,7 +6,9 @@
         <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu">
           <q-icon name="menu" />
         </q-btn>
-
+        <q-toolbar-title>
+          {{$route.name}}
+        </q-toolbar-title>
         <q-space />
 
         <q-btn-dropdown stretch flat :label="user.username">
@@ -82,7 +84,7 @@ export default {
       menuItens: [
         { disable: !this.$ability.can('read', 'ROLE_ADMIN'), id: 1, canRead: 'ROLE_ADMIN', ref: '/users', label: 'Usuários', icon: 'supervised_user_circle' },
         { disable: !this.$ability.can('read', 'ROLE_TRIADOR'), id: 2, canRead: 'ROLE_TRIADOR', ref: `/procedures`, label: 'Processos', icon: 'assessment' },
-        { disable: !this.$ability.can('read', 'ROLE_FINALIZADOR'), id: 3, canRead: 'ROLE_FINALIZADOR', ref: '/opinions', label: 'Pareceres', icon: 'speaker_notes' }
+        { disable: !this.$ability.can('read', 'ROLE_FINALIZADOR'), id: 3, canRead: 'ROLE_FINALIZADOR', ref: '/opinions', label: 'Processos pendentes', icon: 'speaker_notes' }
       ]
     }
   },

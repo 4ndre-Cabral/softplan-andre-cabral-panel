@@ -10,7 +10,7 @@
             v-model="user.username"
             label="Nome de usuário"
             lazy-rules
-            :rules="[ val => val && val.length > 0 || 'Preencha o nome de usuário']"
+            :rules="[val => noEmptyAndLengthRule(val, 20)]"
           />
         </q-item-section>
       </q-item>
@@ -24,7 +24,7 @@
               v-model="email" :suffix="suffix"
               label="e-mail/login"
               lazy-rules
-              :rules="[ val => !!val && emailValidation(val) || 'Preencha o e-mail corretamente']"
+              :rules="[ val => !!val && emailValidation(val) || 'Preencha o e-mail corretamente com até 50 caracteres']"
             />
             <q-input v-if="$route.params.id"
               class="col-6 q-pr-sm"
@@ -44,8 +44,8 @@
               class="col-6 q-pr-sm"
               filled dense
               label="Senha"
-              :rules="[ val => !!val && val.length >= 6 || 'Preencha o senha corretamente']"
-              v-model="user.password" :type="isPwd ? 'password' : 'text'" hint="A senha deve ter no mínimo 6 dígitos"
+              :rules="[ val => !!val && val.length >= 6 && val.length <= 120 || 'Preencha o senha corretamente']"
+              v-model="user.password" :type="isPwd ? 'password' : 'text'" hint="A senha deve ter no mínimo 6 dígitos e máximo 120"
             >
               <template v-slot:append>
                 <q-icon
@@ -142,7 +142,10 @@ export default {
       })
     },
     emailValidation (val) {
-      return helper.isEmail(val + this.suffix)
+      return helper.isEmail(val + this.suffix) && val.length < 50
+    },
+    noEmptyAndLengthRule (val, length) {
+      return (val != null && val.length > 0 && val.length <= length) || `Use entre 1 e ${length} caracteres.`
     }
   }
 }

@@ -5,12 +5,12 @@
       <q-item>
         <q-item-section>
           <q-input
-            class="col-12 q-pr-sm"
+            class="col-12"
             filled dense :readonly="isReadOnly"
             v-model="procedure.description"
             label="Descrição do processo"
-            lazy-rules
-            :rules="[ val => !!val || 'Preencha a descrição do processo']"
+            lazy-rules type="textarea"
+            :rules="[val => noEmptyAndLengthRule(val, 255)]"
           />
         </q-item-section>
       </q-item>
@@ -107,6 +107,9 @@ export default {
           { message: error.response.data.message }
         )
       })
+    },
+    noEmptyAndLengthRule (val, length) {
+      return (val != null && val.length > 0 && val.length <= length) || `Use entre 1 e ${length} caracteres.`
     }
   }
 }
