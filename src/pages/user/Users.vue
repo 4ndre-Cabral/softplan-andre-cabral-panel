@@ -30,7 +30,7 @@
         </q-tr>
       </template>
     </q-table>
-    <div class="text-caption">*Usuários que já assinaram um parecer ou possuem vinculo com um processo não podem ser deletados</div>
+    <div class="text-caption">*Usuários que já assinaram um parecer ou possuem vinculo com um ou mais processos não podem ser deletados</div>
     <!-- Botão Adicionar Usuário -->
     <q-page-sticky position="bottom-right" :offset="[30, 30]">
       <div class="q-gutter-md">

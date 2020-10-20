@@ -58,7 +58,7 @@ Este app conta com 3 níveis de acesso as suas funcionalidades:
 Cada usuário deve estar vinculado em pelo menos um desses perfis. O sistema permite que um usuário seja vinculado a mais
 de um perfil, dando a ele maior acesso a aplicação.
 
-> Ex.: Se um usuário tiver todos os perfis, ele terá acesso as todas as funcionalidades.
+> Ex.: Se um usuário tiver todos os perfis, ele terá acesso a todas funcionalidades.
 
 ### Menu
 O projeto possui um menu principal que só pode ser acessado de acordo com os privilégios do usuário.
@@ -67,7 +67,7 @@ Ele possui as seguintes opções:
 #### Usuários
 Este menu é destinado ao usuário com privilégio de Administrador. Aqui ele pode visualizar, cadastrar, editar 
 e excluir (se possível) os usuários do sistema.
-> Obs.: Não é possível excluir usuários que já assinaram um parecer ou possuem vinculo com um processo
+> Obs.: Não é possível excluir usuários que já assinaram um parecer ou possuem vinculo com um ou mais processos
 
 #### Processos
 Este menu é destinado ao usuário com privilégio de Triador. Aqui ele pode visualizar, cadastrar e atribuir um
