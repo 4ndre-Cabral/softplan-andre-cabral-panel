@@ -18,7 +18,23 @@
       </template>
       <template selectable v-slot:body="props">
         <q-tr class="cursor-pointer" :props="props" @click="$router.push(`procedure/${props.row.id}`)">
-          <q-td key="description" :props="props">{{ props.row.description }}</q-td>
+          <q-td style="width: 5%;">
+            <q-btn
+              flat round
+              @click.stop="props.expand = !props.expand"
+              :icon="props.expand ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+              style="z-index: 1000"
+            />
+            <q-tooltip>Expandir linha</q-tooltip>
+          </q-td>
+          <q-td
+            key="description"
+            :props="props"
+            :class="!props.expand ? 'ellipsis' : ''"
+            :style="!props.expand ? 'max-width: 300px; padding-left: 50px; padding-right: 50px;' : 'max-width: 300px; white-space: break-spaces; padding-left: 50px; padding-right: 50px;'"
+          >
+            {{ props.row.description }}
+          </q-td>
           <q-td key="dateRegister" :props="props">{{ formatedDate(props.row.dateRegiter) }}</q-td>
           <q-td key="opinions" :props="props" >{{ props.row.opinions.length }}</q-td>
           <q-td key="users" :props="props" >{{ props.row.users.length }}</q-td>
@@ -47,6 +63,7 @@ export default {
       loaderProcedures: false,
       filter: '',
       tableHeader: [
+        { name: 'acoes', label: 'Ações', field: 'acoes', sortable: false, align: 'left' },
         { name: 'description', label: 'Descrição', field: 'description', sortable: true, align: 'left' },
         { name: 'dateRegister', label: 'Data cadastro', field: 'dateRegister', sortable: true, align: 'left' },
         { name: 'opinions', label: 'Total pareceres finalizados', field: 'opinions', sortable: false, align: 'center' },

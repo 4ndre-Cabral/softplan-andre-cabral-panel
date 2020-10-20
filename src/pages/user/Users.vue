@@ -19,7 +19,9 @@
       <template selectable v-slot:body="props">
         <q-tr class="cursor-pointer" :props="props" @click="$router.push(`user/${props.row.id}`)">
           <q-td key="acao" auto-width align='center'>
-            <q-btn :disable="props.row.opinions.length > 0" round size="sm" icon="delete" color="primary" @click.stop="deleteUser(props.row.id)"/>
+            <q-btn
+              :disable="canDelete(props.row)"
+              round size="sm" icon="delete" color="primary" @click.stop="deleteUser(props.row.id)"/>
             <q-tooltip>Deletar usuário</q-tooltip>
           </q-td>
           <q-td key="username" :props="props">{{ props.row.username }}</q-td>
@@ -28,7 +30,7 @@
         </q-tr>
       </template>
     </q-table>
-    <div class="text-caption">*Usuários que já assinaram um parecer não podem ser deletados</div>
+    <div class="text-caption">*Usuários que já assinaram um parecer ou possuem vinculo com um processo não podem ser deletados</div>
     <!-- Botão Adicionar Usuário -->
     <q-page-sticky position="bottom-right" :offset="[30, 30]">
       <div class="q-gutter-md">
@@ -101,6 +103,9 @@ export default {
         }
         return false
       })
+    },
+    canDelete (item) {
+      return item.opinions.length > 0 || item.procedures.length > 0 || item.proceduresByUser.length > 0
     }
   }
 }

@@ -67,7 +67,7 @@ Ele possui as seguintes opções:
 #### Usuários
 Este menu é destinado ao usuário com privilégio de Administrador. Aqui ele pode visualizar, cadastrar, editar 
 e excluir (se possível) os usuários do sistema.
-> Obs.: Não é possível excluir usuários que já cadastraram ao menos um parecer.
+> Obs.: Não é possível excluir usuários que já assinaram um parecer ou possuem vinculo com um processo
 
 #### Processos
 Este menu é destinado ao usuário com privilégio de Triador. Aqui ele pode visualizar, cadastrar e atribuir um

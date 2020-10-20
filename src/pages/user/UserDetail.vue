@@ -45,7 +45,7 @@
               filled dense
               label="Senha"
               :rules="[ val => !!val && val.length >= 6 && val.length <= 120 || 'Preencha o senha corretamente']"
-              v-model="user.password" :type="isPwd ? 'password' : 'text'" hint="A senha deve ter no mínimo 6 dígitos e máximo 120"
+              v-model="user.password" :type="isPwd ? 'password' : 'text'" hint="A senha deve ter entre 6 a 120 caracteres"
             >
               <template v-slot:append>
                 <q-icon
@@ -63,7 +63,7 @@
         <q-item-section>
           <q-select
             filled dense use-chips multiple
-            v-model="user.role"
+            v-model="user.roles"
             :options="userRoleOptions"
             label="Tipo de usuário"
             emit-value
@@ -110,9 +110,13 @@ export default {
           this.user = response.data
           this.user.password = null
           this.email = this.user.email.split('@')[0]
-          this.user.role = this.user.roles.map(role => {
-            return role.name
+          let roles = []
+          this.userRoleOptions.forEach(role => {
+            this.user.roles.map(r => {
+              if (r.name === role.value) roles.push(role)
+            })
           })
+          this.user.roles = roles
         }
         loading.hide()
       })
@@ -121,10 +125,13 @@ export default {
   methods: {
     userInsertOrUpdate () {
       if (!this.user.password) delete this.user.password
-      // this.user.role = []
-      // this.user.role.push(this.user.roles)
       this.user.email = this.email + this.suffix
-      // delete this.user.roles
+      let roles = []
+      this.user.roles.map(r => {
+        roles.push(r.label ? r.value : r)
+      })
+      this.user.role = roles
+      delete this.user.roles
       delete this.user.opinions
       loading.show('Salvando...')
       userService.save(this.user).then(response => {

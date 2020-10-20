@@ -13,7 +13,7 @@
               <span class="text-weight-medium text-h6">{{index + 1}}</span>
               <span class="text-grey-8 text-subtitle1"> - {{procedure.description}}</span>
               <q-item-label
-                v-if="procedure.description.length > 20"
+                v-if="procedure.description.length > 15"
                 style="white-space: normal;" caption lines="20">{{procedure.description}}</q-item-label>
             </q-item-label>
           </q-item-section>
@@ -106,7 +106,7 @@ export default {
     },
     showOptonCard (procedure) {
       this.selectedProcedure = procedure
-      this.option.description = null
+      this.description = null
       this.option.procedure = { id: procedure.id }
       this.optionCard = true
     },
