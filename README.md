@@ -82,7 +82,7 @@ As rotas da aplicação são liberadas por nível de acesso. Caso um usuário te
 ele será redirecionado para sua rota de destino principal
 
 ### Tela de erro
-Caso o usuário tente acessar um destino (rota) não existente ele será enviado para uma tela de Erro 404
+Caso o usuário tente acessar um destino (rota) que não existente ele será enviado para uma tela de Erro 404
 
 ### Referência
 https://quasar.dev
